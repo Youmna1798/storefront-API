@@ -71,10 +71,10 @@ In this repo there is a `REQUIREMENTS.md` document which outlines what this API 
 CREATE USER username postgres PASSWORD '17aug1998';
 
 # create Database
-CREATE DATABASE udacity_hub; CREATE DATABASE udacity_hub;
+CREATE DATABASE udacity_hub; CREATE DATABASE udacity_hub_test;
 
 # grant all databases to the user
-GRANT ALL PRIVILEGES ON DATABASE udacity_hub TO username; GRANT ALL PRIVILEGES ON DATABASE udacity_hub TO username;
+GRANT ALL PRIVILEGES ON DATABASE udacity_hub TO postgres; GRANT ALL PRIVILEGES ON DATABASE udacity_hub_test TO postgres;
 ```
 
 ### Database Migrations
