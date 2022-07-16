@@ -9,6 +9,7 @@ const leadModel = new LeadModel();
 const request = supertest(app);
 
 const baseSession: Session = {
+  
   date: '12/12/2012',
   title: 'Test Session',
   sl_id: 1,
@@ -21,6 +22,15 @@ describe('Testing Model: session', () => {
   it('Must have a create method', () => {
     expect(sessionModel.create).toBeDefined();
   });
+  
+//   it('should create a user', async () => {
+//     const result = await sessionModel.create({
+//         date: '12/12/2012',
+//         title: 'Test Session',
+//         sl_id: 1,
+//     })
+//     expect(result.title).toEqual('Test Session')
+// })
 
   it('Must have an index method', () => {
     expect(sessionModel.index).toBeDefined();
@@ -36,6 +46,11 @@ describe('Testing Model: session', () => {
 
   it('Must have a delete method', () => {
     expect(sessionModel.delete).toBeDefined();
+  });
+  
+  it('Testing the delete model to return the deleted session', async () => {
+    const deletedSession = await sessionModel.delete(session.id as number);
+    expect(deletedSession.id).toEqual(session.id);
   });
 });
 

@@ -100,9 +100,11 @@ db-migrate create remove-sl-fk --sql-file
 ```sh
 # to connect with the database use the following environmental variables
   PORT ----- the server running on the port of 3000
+  DB_PORT = 5432
+
   DB_HOST ----- the host (127.0.0.1)
   DB_NAME ----- name of the database (udacity_hub)
-  DB_TEST ----- name of the test database (udacity_hub)
+  DB_TEST ----- name of the test database (udacity_hub_test)
   DB_USER ----- the user name or the owner of the database(postgres)
   DB_PASSWORD ----- password of the database(17aug1998)
   ENV ----- dev

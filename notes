@@ -1,0 +1,6 @@
+databse port = 5432
+
+changes in model test 
+add session_leadSpec : create...toEqual
+add sessionSpec : delete... toEqual
+add studentSpec : create and delete ....toEqual

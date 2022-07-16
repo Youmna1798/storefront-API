@@ -17,6 +17,15 @@ describe('Testing students Methods', () => {
     it('A method that get all users', () => {
       expect(studentsModel.index).toBeDefined();
     });
+    it('Testing the delete model to return the deleted student', async () => {
+      const deletedStudent = await studentsModel.delete(student.id as number);
+      expect(deletedStudent.id).toEqual(student.id);
+    });
+
+    it('Testing the create model with a student', async () => {
+      student = await studentsModel.create(studentName);
+      expect(student.name).toEqual(studentName);
+    });
   
     it('A method that get a specific user', () => {
       expect(studentsModel.show).toBeDefined();

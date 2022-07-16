@@ -15,6 +15,13 @@ const baseLead: Lead = {
   email: 'R2@D2.com',
   password: 'beep-boop',
 };
+async function createUser (baseLead: Lead) {
+  return leadModel.create(baseLead)
+}
+
+async function deleteUser (id: number) {
+  return leadModel.delete(id)
+}
 let lead: Lead;
 const token = jwt.sign(baseLead, process.env.TOKEN_SECRET as string);
 
@@ -22,29 +29,56 @@ describe('Testing Model: session_leads', () => {
   it('Must have a create method', () => {
     expect(leadModel.create).toBeDefined();
   });
+  
+  describe('User Model', () => {
+    it('should create a user', async () => {
+        const result = await leadModel.create({
+            name: 'ssmith',
+            email: 'Sallie',
+            password: 'password123',
+        })
+        expect(result.name).toEqual('ssmith')
+    })
+
+  });
   it('Must have an index method', () => {
     expect(leadModel.index).toBeDefined();
   });
 
+  it('index method should return a list of users', async () => {
+    const result = await leadModel.index();
+    expect(result[0].name).toEqual('ssmith');
+  });
+
+ 
   it('Must have a show method', () => {
     expect(leadModel.show).toBeDefined();
   });
 
+  // it('show method should return the target users', async () => {
+  //   const result = await leadModel.show(1);
+  //   expect(result.name).toEqual('R2-D2');
+  // });
+
+
   it('Must have an update method', () => {
     expect(leadModel.update).toBeDefined();
   });
+ 
 
 
   it('Must have a delete method', () => {
     expect(leadModel.delete).toBeDefined();
   });
+  
+
 });
 
 
 
 describe('Testing Endpoint: /leads', () => {
     
-    it('Testing the create endpoint ', async () => {
+    it('Testing the create endpoint', async () => {
      const response = await request
         .post('/leads')
         .send({
