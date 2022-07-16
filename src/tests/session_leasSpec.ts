@@ -45,6 +45,8 @@ describe('Testing Model: session_leads', () => {
     expect(leadModel.index).toBeDefined();
   });
 
+ 
+
   it('index method should return a list of users', async () => {
     const result = await leadModel.index();
     expect(result[0].name).toEqual('ssmith');
@@ -53,6 +55,11 @@ describe('Testing Model: session_leads', () => {
  
   it('Must have a show method', () => {
     expect(leadModel.show).toBeDefined();
+  });
+
+  it('Testing the show model to return the lead', async () => {
+    const foundLead = await leadModel.show(lead.id as number);
+    expect(foundLead).toEqual(lead);
   });
 
   // it('show method should return the target users', async () => {
@@ -71,6 +78,10 @@ describe('Testing Model: session_leads', () => {
     expect(leadModel.delete).toBeDefined();
   });
   
+  it('Testing the delete model to return the deleted lead', async () => {
+    const deletedLead = await leadModel.delete(lead.id as number);
+    expect(deletedLead.id).toEqual(lead.id);
+  });
 
 });
 

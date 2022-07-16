@@ -48,10 +48,32 @@ describe('Testing Model: session', () => {
     expect(sessionModel.delete).toBeDefined();
   });
   
+
+  it('Testing the create model with a session', async () => {
+    session = await sessionModel.create(baseSession);
+    expect({
+      title: session.title,
+      sl_id: session.sl_id,
+    }).toEqual({
+      title: baseSession.title,
+      sl_id: baseSession.sl_id,
+    });
+  });
+
+  it('Testing the update model to return the updated session', async () => {
+    const updatedSession = await sessionModel.update({
+      ...session,
+      title: 'Test session 2',
+    });
+    expect(updatedSession.title).toEqual('Test session 2');
+  });
+  
   it('Testing the delete model to return the deleted session', async () => {
     const deletedSession = await sessionModel.delete(session.id as number);
     expect(deletedSession.id).toEqual(session.id);
   });
+
+  
 });
 
 
